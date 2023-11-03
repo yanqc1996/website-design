@@ -42,10 +42,9 @@ import { ref, reactive } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 import { ElMessage } from "element-plus";
-import DomainStorage from "domain-storage/lib/DomainStorage";
+
 export default {
   setup() {
-    DomainStorage.setServerUrl("https://gd-vite.vercel.app/#/login");
     const router = useRouter();
     const param = reactive({
       username: "admin",
@@ -64,19 +63,16 @@ export default {
     };
     const login = ref(null);
     const submitForm = () => {
-      DomainStorage.setItem("someItem", "someValue").then(() =>
-        console.log("someItem is set")
-      );
-      //   login.value.validate((valid) => {
-      //     if (valid) {
-      //       ElMessage.success("登录成功");
-      //       localStorage.setItem("ms_username", param.username);
-      //       router.push("/");
-      //     } else {
-      //       ElMessage.error("登录成功");
-      //       return false;
-      //     }
-      //   });
+      login.value.validate((valid) => {
+        if (valid) {
+          ElMessage.success("登录成功");
+          localStorage.setItem("ms_username", param.username);
+          router.push("/");
+        } else {
+          ElMessage.error("登录成功");
+          return false;
+        }
+      });
     };
 
     const store = useStore();
