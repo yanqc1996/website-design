@@ -18,7 +18,7 @@
     window.addEventListener("message", function (event) {
       console.log(event, "akjsa");
       // 确保消息来自预期的父域
-      if (event.origin === "https://gd-vite.vercel.app/") {
+      if (event.origin === "https://gd-vite.vercel.app") {
         // 获取消息内容
         var message = event.data;
 
@@ -30,7 +30,7 @@
           // 可选：向父域发送确认消息
           window.parent.postMessage(
             { type: "localStorageUpdated" },
-            "https://gd-vite.vercel.app/"
+            "https://gd-vite.vercel.app"
           );
         }
       }
