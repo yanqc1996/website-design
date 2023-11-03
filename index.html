@@ -16,6 +16,7 @@
     console.log(999);
     // 监听来自父域的消息
     window.addEventListener("message", function (event) {
+      console.log(event, "akjsa");
       // 确保消息来自预期的父域
       if (event.origin === "https://gd-vite.vercel.app/") {
         // 获取消息内容
