@@ -14,5 +14,25 @@
   <script>
     localStorage.setItem("rik-Test", 9999);
     console.log(999);
+    // 监听来自父域的消息
+    window.addEventListener("message", function (event) {
+      // 确保消息来自预期的父域
+      if (event.origin === "https://gd-vite.vercel.app/") {
+        // 获取消息内容
+        var message = event.data;
+
+        // 检查消息类型
+        if (message.type === "updateLocalStorage") {
+          // 更新localStorage
+          localStorage.setItem(message.key, message.value);
+
+          // 可选：向父域发送确认消息
+          window.parent.postMessage(
+            { type: "localStorageUpdated" },
+            "https://gd-vite.vercel.app/"
+          );
+        }
+      }
+    });
   </script>
 </html>
