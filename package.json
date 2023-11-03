@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "domain-storage": "adeelnawaz/domain-storage",
     "element-plus": "1.0.2-beta.65",
     "less": "4.1.2",
     "vue": "^3.2.4",
